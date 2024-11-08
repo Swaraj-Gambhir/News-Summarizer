@@ -6,6 +6,7 @@ from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_anthropic import ChatAnthropic
 from langchain_groq import ChatGroq
 from langgraph.graph import StateGraph, START, END
+from langchain_community.tools import DuckDuckGoSearchResults
 class State(TypedDict):
     keyword:str
     news_article:str
@@ -17,6 +18,7 @@ st.sidebar.title("Navigation")
 # API Key Input
 api_key = st.sidebar.text_input("Enter your API Key", type="password")
 no = st.sidebar.text_input("No. of News Article", type="default")
+
 # First Layer Dropdown
 menu_options = ["openai", "anthropic", "google","groq"]
 selected_menu = st.sidebar.selectbox("Main Menu", menu_options)
@@ -53,9 +55,11 @@ navbar_config = {
     "company": selected_menu,
     "model": selected_sub_menu
 }
-from langchain_community.tools import DuckDuckGoSearchResults
-search = DuckDuckGoSearchResults(num_results=no, source="news" ,output_format="list")
+
+
+
 def news(state):
+    search = DuckDuckGoSearchResults(num_results=no, source="news" ,output_format="list")
     li = search.invoke(state['keyword'])
     links = [i['link'] for i in li]
     loader = WebBaseLoader(links)
