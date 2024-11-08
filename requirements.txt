@@ -1,0 +1,9 @@
+langchain_community
+beautifulsoup4
+duckduckgo-search
+langgraph
+langchain-google-genai
+langchain-openai
+langchain-anthropic
+langchain-groq
+streamlit 
