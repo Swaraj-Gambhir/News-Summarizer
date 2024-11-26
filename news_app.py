@@ -166,8 +166,8 @@ def news_node(state):
     li2=[]
     news =[]
     links2=[]
-    search = DuckDuckGoSearchResults(num_results=10, source="news" ,output_format="list")
-    time.sleep(10)
+    search = DuckDuckGoSearchResults(num_results=5, source="news" ,output_format="list")
+    time.sleep(15)
     for keyword in state["keyword"]:
         li = search.invoke(keyword)
         li2.append(keyword)
